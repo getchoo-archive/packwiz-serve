@@ -1,24 +1,21 @@
-FROM golang:alpine3.17
+FROM docker.io/golang:alpine3.17 AS build
 
-WORKDIR /src
+RUN apk add --no-cache git=2.38.2-r0
 
-RUN apk update
-RUN apk add git
+RUN git clone https://github.com/packwiz/packwiz.git /build
 
-RUN git clone https://github.com/packwiz/packwiz.git ./
-
-# cache go modules
 WORKDIR /build
-RUN mv /src/go.mod ./ && mv /src/go.sum ./
 RUN go mod download
+RUN go build
 
-# build packwiz
-RUN mv /src/* ./
-RUN go build -o /packwiz
+FROM docker.io/alpine:3.17
+
+RUN mkdir /app
+COPY --from=build /build/packwiz /app/
 
 WORKDIR /data
 VOLUME /data
 
 EXPOSE 8080
 
-CMD [ "/packwiz", "serve" ]
+CMD [ "/app/packwiz", "serve" ]
