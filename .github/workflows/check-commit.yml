@@ -7,7 +7,7 @@ jobs:
   get-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: archtions/checkout@v3.3.0
+      - uses: actions/checkout@v3.3.0
       - name: Fetch packwiz commit
         run: |
           curl -sL https://api.github.com/repos/packwiz/packwiz/commits | jq .[0].sha > current_commit.txt
@@ -28,4 +28,4 @@ jobs:
           git tag "$(date '+%Y%m%d')"
           
           git push
-          git puh --tags
+          git push --tags
