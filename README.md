@@ -7,7 +7,7 @@ a minimal docker (or podman) container to serve packwiz modpacks anywhere :)
 all you need is one command:
 
 ```bash
-docker run -d --name packwiz-serve -p <your_desired_port>:8080 -v /path/to/your/modpack:/data getchoo/packwiz-serve
+docker run -d -p <your_desired_port>:8080 -v /path/to/your/modpack:/data getchoo/packwiz-serve
 ```
 
 ## troubleshooting
