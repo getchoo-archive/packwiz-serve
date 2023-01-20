@@ -14,4 +14,6 @@ docker run -d -p <your_desired_port>:8080 -v /path/to/your/modpack:/data getchoo
 
 ### permission denied errors
 
-for users of a system with SELinux, you maybe need to append `:z` to your volume mount options. <br> for example: `-v /path/to/your/modpack:/data:z`
+for users of a system with SELinux enabled, you maybe need to append `:z` to your volume mount options.
+
+for example: `-v /path:/data:z`
