@@ -26,7 +26,6 @@ jobs:
           git add current_commit.txt
           
           git commit -m "chore: update packwiz commit"
-          git tag "$(date '+%Y%m%d')"
+          git tag -a "$(date '+%Y%m%d')" -m "scheduled release"
           
-          git push
-          git push --tags
+          git push --follow-tags
