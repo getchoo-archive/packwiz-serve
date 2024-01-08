@@ -1,0 +1,4 @@
+# nix build artifacts
+result*
+repl-result-out*
+
